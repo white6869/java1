@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.util.Iterator;
 
 public class Pratice {
 
@@ -87,20 +88,14 @@ public class Pratice {
 	}
 
 	public void method6() {
-		FileOutputStream fis = null;
 		
-		try {
-			fis = new FileOutputStream("/io_test/20251015/input2.txt");
-			StringBuilder sb = new StringBuilder();
-			sb.append("ABCDEFGHIJ");
-			sb.append("KLMNOPQRST");
-			sb.append("UVWXYZ");
-			String content = sb.toString();
+		try (FileInputStream fis = new FileInputStream("input2.txt")){
 			byte[] bs = new byte[10];
 			int i;
-			while ((i = content.read(bs) != -1)) {
+			
+			while ((i = fis.read(bs)) != -1) {
 				for(byte b : bs) {
-					System.out.println((char)b);
+					System.out.print((char)b);
 				}
 				System.out.println(": " + i + "바이트 읽음");
 			}
@@ -109,5 +104,47 @@ public class Pratice {
 		}
 		System.out.println("end");
 		
+	}
+
+	public void method7() {
+		try (FileOutputStream fos = new FileOutputStream("output.txt")) {
+			fos.write(65);
+			fos.write(66);
+			fos.write(67);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		System.out.println("출력이 완료되었습니다.");
+	}
+	
+	public void method8() throws FileNotFoundException {
+		FileOutputStream fos = new FileOutputStream("output2.txt", true);
+		try (fos) {
+			byte[] bs = new byte[26];
+			byte data = 65;
+			for (int i = 0; i < bs.length; i++) {
+				bs[i] = data;
+				data++;
+			}
+			fos.write(bs);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		System.out.println("출력이 완료되었습니다.");
+	}
+	
+	public void method9() {
+		try(FileOutputStream fos = new FileOutputStream("output3.txt")) {
+			byte[] bs = new byte[26];
+			byte data = 65;
+			for(int i = 0; i < bs.length; i++) {
+				bs[i] = data;
+				data++;
+			}
+			fos.write(bs, 2, 24);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		System.out.println("출력이 완료되었습니다.");
 	}
 }

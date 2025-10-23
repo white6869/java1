@@ -34,10 +34,10 @@ public class ByteRun {
 //		System.out.println(System.identityHashCode(sb)); // 1804094807
 		
 		ByteService service = new ByteService();
-		//service.fileByteOutput();
+		service.fileByteOutput();
 		//service.bufferedFileOutput();
 		//service.fileByteInput();
-		service.fileCopy();
+		//service.fileCopy();
 		
 		
 	}

@@ -53,30 +53,30 @@ public class ByteService {
 			// StringBuilder -> String 변환 -> charAt() -> char 변환
 			String content = sb.toString();
 
-			/*
-			 * for (int i = 0; i < content.length(); i++) { char ch = content.charAt(i);
-			 * fos.write(ch); }
-			 */
+			
+			 for (int i = 0; i < content.length(); i++) { char ch = content.charAt(i);
+			  fos.write(ch); }
+			 
 
 			// 출력 방법 2 : String을 byte[] 변환 후 출력
 
 			// 이전
 			// 수행 시간 확인
 			long startTime = System.nanoTime();
-			// System.nanoTime() : 1970.01.01 오전 9:00:00 부터
-			// 현재 시간까지의 차이를 ns(nano second)로 반환
-			// 1ms (밀리) == 1/1000초
-			// 1us (마이크로) == 1/1000ms
-			// 1ns (나노) == 1/1000us
-
-			fos.write(content.getBytes()); // byte[]로 만들어 반환하고
-			// 내부적으로 문자 인코딩을 적용하여 한글도 깨지지 않고 출력됨.
-
-			// 이후
-			long endTime = System.nanoTime();
-
-			System.out.println("[수행시간] : " + (endTime - startTime) + "ns");
-			// 153000ns
+//			// System.nanoTime() : 1970.01.01 오전 9:00:00 부터
+//			// 현재 시간까지의 차이를 ns(nano second)로 반환
+//			// 1ms (밀리) == 1/1000초
+//			// 1us (마이크로) == 1/1000ms
+//			// 1ns (나노) == 1/1000us
+//
+//			fos.write(content.getBytes()); // byte[]로 만들어 반환하고
+//			// 내부적으로 문자 인코딩을 적용하여 한글도 깨지지 않고 출력됨.
+//
+//			// 이후
+//			long endTime = System.nanoTime();
+//
+//			System.out.println("[수행시간] : " + (endTime - startTime) + "ns");
+//			// 153000ns
 
 			fos.flush(); // FileOutputStream에서는 flush() 선택 사항
 			// flush : 스트림 안에 남아있는 모든 데이터를 외부로 모두 밀어냄
